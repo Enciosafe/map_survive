@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Карта ТКСР: Город-Альфа и регионы</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+  <style>
+    #map { height: 100vh; }
+  </style>
+</head>
+<body>
+  <div id="map"></div>
+
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+  <script>
+    const map = L.map('map').setView([65.0, -18.0], 3); // Исландия — Город-Альфа
+
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+      attribution: '&copy; OpenStreetMap contributors'
+    }).addTo(map);
+
+    // Город-Альфа (Северная Исландия)
+    L.marker([65.5, -17.0]).addTo(map)
+      .bindPopup('<b>Город-Альфа</b><br>Первый город-полигон ТКСР.')
+      .openPopup();
+
+    // Регион 1 — Австралия
+    L.circle([-25.0, 135.0], {
+      color: 'blue',
+      fillColor: '#30f',
+      fillOpacity: 0.3,
+      radius: 1000000
+    }).addTo(map).bindPopup('Регион: Австралия (поздняя интеграция)');
+
+    // Регион 2 — Восточная Европа
+    L.circle([48.4, 31.1], {
+      color: 'green',
+      fillColor: '#3f3',
+      fillOpacity: 0.3,
+      radius: 1000000
+    }).addTo(map).bindPopup('Регион: Восточная Европа (очаг восстановления)');
+
+    // Регион 3 — Южная Америка (Андская зона)
+    L.circle([-13.5, -71.5], {
+      color: 'orange',
+      fillColor: '#fa3',
+      fillOpacity: 0.3,
+      radius: 1000000
+    }).addTo(map).bindPopup('Регион: Анды (самостоятельное восстановление)');
+  </script>
+</body>
+</html>
